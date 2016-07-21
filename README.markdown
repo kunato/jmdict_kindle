@@ -35,7 +35,7 @@ Download
 ========
 
 You can download the latest version of the dictionary from
-[here](https://github.com/jrfonseca/jmdict-kindle/releases).
+[here](https://github.com/kunato/jmdict_kindle/blob/master/B005FNK020_EBOK.prc).
 
 
 Install
