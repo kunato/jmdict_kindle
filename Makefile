@@ -9,20 +9,17 @@ edict2.gz enamdict.gz JMdict_e.gz JMnedict.xml.gz:
 jmdict.opf: jmdict.py dictionary.py inflections.py kana.py JMdict_e.gz
 	python jmdict.py
 
-cover.jpg: cover.py
-	python cover.py
-
 # XXX: The Kindle Publishing Guidelines recommend -c2 (huffdic compression),
 # but it is excruciatingly slow.
 COMPRESSION ?= 1
 
 jmdict.full.mobi: jmdict.opf cover.jpg style.css frontmatter.html
-	kindlegen $< -c$(COMPRESSION) -verbose -o $@
+	./kindlegen $< -c$(COMPRESSION) -verbose -o $@
 
 %.mobi: %.full.mobi kindlestrip.py
 	python kindlestrip.py $< $@
 
 clean:
-	rm -f *.mobi *.opf entry-*.html cover.jpg
+	rm -f *.mobi *.opf entry-*.html
 
 .PHONE: default clean

@@ -159,20 +159,20 @@ def write_index(entries, stream):
         stream.write(' </ul>\n')
 
         for ortho in entry.orthos:
-            stream.write(' <idx:orth value="%s"' % escape(ortho.value, quote=True))
+            stream.write(' <idx:orth value="%s"/>\n' % escape(ortho.value, quote=True))
             if ortho.inflgrps:
-                stream.write('>\n')
                 for inflgrp in ortho.inflgrps.values():
                     assert inflgrp
-                    stream.write('  <idx:infl>\n')
+                    # stream.write('  <idx:infl>\n')
                     iforms = list(inflgrp)
                     iforms.sort()
                     for iform in iforms:
-                        stream.write('   <idx:iform value="%s"/>\n' % escape(iform, quote=True))
-                    stream.write('  </idx:infl>\n')
-                stream.write(' </idx:orth>\n')
-            else:
-                stream.write('/>\n')
+                        stream.write(' <idx:orth value="%s" />\n' % escape(iform, quote=True))
+                        # stream.write('   <idx:iform value="%s"/>\n' % escape(iform, quote=True))
+                    # stream.write('  </idx:infl>\n')
+                # stream.write(' </idx:orth>\n')
+            # else:
+                # stream.write('/>\n')
         
         stream.write('</idx:entry>\n')
         
