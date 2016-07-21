@@ -31,7 +31,7 @@ def inflect(dict_form, pos):
     its dictionary form.'''
 
     infl = {}
-
+    is_verb = False
     if pos == 'adj-i':
         assert dict_form[-1] == u'い'
 
@@ -51,7 +51,7 @@ def inflect(dict_form, pos):
         # ichidan
 
         assert dict_form[-1:] == u'る'
-
+        is_verb = True
         infl['nominal'] = dict_form[:-1]
         infl['past'] = infl['nominal'] + u'た'
         infl['negative'] = infl['nominal'] + u'ない'
@@ -65,7 +65,7 @@ def inflect(dict_form, pos):
 
     elif pos in ('v5b', 'v5g', 'v5k', 'v5m', 'v5n', 'v5r', 'v5s', 'v5t', 'v5u'):
         root = ''
-
+        is_verb = True
         if pos == 'v5t':
             assert dict_form[-1:] == u'つ'
             root = dict_form[:-1]
@@ -158,9 +158,9 @@ def inflect(dict_form, pos):
 
         else:
             assert False
-            # TODO: v5k-s
-            # TODO: v5r-i
-            # TODO: v5u-s
+            # TODO: v5k-s iku/yoku
+            # TODO: v5r-i aru
+            # TODO: v5u-s tou uradou kou
             # TODO: v5z
 
         assert infl['negative'][-2:] == u'ない'
@@ -239,5 +239,20 @@ def inflect(dict_form, pos):
     infl['past-polite'] = infl['nominal'] + u'ました'
     infl['negative-polite'] = infl['nominal'] + u'ません'
     infl['volitional-polite'] = infl['nominal'] + u'ましょう'
+    if(is_verb):
+        passive_form = infl['passive']
+        assert passive_form[-1:] == u'る'
+        infl['passive-past'] = passive_form[:-1] + u'た'
+        infl['passive-participle'] = passive_form[:-1] + u'て'
+        infl['passive-negative-provisional-conditional'] = passive_form[:-1] + u'なければ'
+        infl['passive-negative'] = passive_form[:-1] + u'ない'
 
+        passive_nai_form = infl['passive-negative']
+        assert passive_nai_form[-2:] == u'ない'
+        infl['passive-negative-nominal'] = passive_nai_form[:-2] + u'なく'
+        infl['passive-negative-past'] = passive_nai_form[:-2] + u'なかった'
+        infl['passive-negative-participle'] = passive_nai_form[:-2] + u'ないで'
+        infl['passive-negative-provisional-conditional'] = passive_nai_form[:-2] + u'なければ'
+        infl['passive-negative-provisional-conditional-colloquial'] = passive_nai_form[:-2] + u'なきゃ'
+    
     return infl
