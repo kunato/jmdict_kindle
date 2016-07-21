@@ -1,6 +1,17 @@
 About
 =====
 
+Android Support
+===============
+
+This is based on https://github.com/jrfonseca/jmdict-kindle
+with verb inflected lookup support for Android devices.
+
+
+===============
+
+
+
 This is a Japanese-English dictionary based on the
 [JMdict](http://www.edrdg.org/jmdict/j_jmdict.html) database for
 [Kindle Paperwhite](http://www.amazon.co.uk/dp/B00CTUKFNQ) devices.
@@ -52,8 +63,6 @@ To install the dictionary into your device follow these steps:
 
 Kindle Android App
 ------------------
-
-**NOTE: Unfortunately the Kindle Android App does not support dictionary inflections, yielding verbs lookup practically impossible. No known workaround.**
 
 * rename `jmdict.mobi` as `B005FNK020_EBOK.prc`
 
